@@ -1,25 +1,19 @@
 import math
 
-points = []
-n = int(input("Kaç nokta gireceksiniz? "))
-for i in range(n):
-    x, y = map(float, input(f"{i+1}. noktanın koordinatlarını girin (x y): ").split())
-    points.append((x, y))
+# Noktaların tanımlanması
+points = [(1, 2), (3, 4), (5, 6), (7, 8)]  # Örnek noktalar
 
-# Öklid mesafesini hesaplama fonksiyonu
+# Öklid Mesafesi için fonksiyon
 def euclideanDistance(point1, point2):
     return math.sqrt((point2[0] - point1[0])**2 + (point2[1] - point1[1])**2)
 
-# Tüm nokta çiftleri arasındaki mesafeleri hesaplayıp minimum olanı bulma
-min_distance = float('inf')
+# Mesafelerin hesaplanması
+distances = []
 for i in range(len(points)):
-    for j in range(i + 1, len(points)):
+    for j in range(i+1, len(points)):
         distance = euclideanDistance(points[i], points[j])
-        if distance < min_distance:
-            min_distance = distance
+        distances.append(distance)
 
-# Sonucu yazdırma
-if n > 1:
-    print(f"Minimum Öklid mesafesi: {min_distance}")
-else:
-    print("Mesafe hesaplanacak yeterli nokta yok.)
+# Minimum mesafenin bulunması
+min_distance = min(distances)
+print(f"En kısa Öklid mesafesi: {min_distance}")
